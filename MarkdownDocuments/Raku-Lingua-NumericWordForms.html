@@ -1,0 +1,84 @@
+<h1 id="raku-linguanumericwordforms">Raku Lingua::NumericWordForms</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The repository <a href="https://github.com/antononcube/Raku-Lingua-NumericWordForms">Raku Lingua::NumericWordForms</a> provides a Raku package with functions for the generation, parsing, and interpretation of numeric word forms in different languages.</p>
+<p>The initial versions of the code in this repository can be found in the GitHub repository [AAr1].</p>
+<p>The Raku package <a href="https://github.com/labster/p6-Lingua-Number"><code>Lingua::Number</code></a>, [BL1], provides word forms (cardinal, ordinal, etc.) generation in many languages. (But at least for one language the produced forms are incorrect.)</p>
+<p>The Raku package <a href="https://github.com/labster/p6-Lingua-Number"><code>Lingua::EN::Numbers</code></a>, [SS1], also provides word forms (cardinal, ordinal, etc.) generation in English.</p>
+<p>The parsers and interpreters of this package can be seen as complementary to the functions in [BL1, SS1].</p>
+<p><strong>Remark:</strong> Maybe a more complete version of this package should be merged with <a href="https://github.com/labster/p6-Lingua-Number"><code>Lingua::Number</code></a>, [BL1].</p>
+<p><strong>Remark:</strong> I can judge the quality of the results only of the languages: Bulgarian, English, and Russian. The numeric word form interpreters for the rest of the languages pass testing, but they might have potentially many deficiencies. (That are easily detected by people who have mastered those languages.)</p>
+<hr />
+<h2 id="installation">Installation</h2>
+<pre><code>zef install https://github.com/antononcube/Raku-Lingua-NumericWordForms.git</code></pre>
+<hr />
+<h2 id="examples">Examples</h2>
+<h3 id="generation">Generation</h3>
+<p>Generation of numeric word forms:</p>
+<pre class="perl6"><code>use Lingua::NumericWordForms;
+say to-numeric-word-form(8093);
+say to-numeric-word-form(8093, &#39;Bulgarian&#39;); # not implemented yet
+say to-numeric-word-form(8093, &#39;Russian&#39;);   # not implemented yet</code></pre>
+<p>Here is a screenshot of the results:</p>
+<figure>
+<img src="https://github.com/antononcube/Raku-Lingua-NumericWordForms/raw/main/documents/diagrams/to-numeric-form-demo-Raku-REPL.png" alt="to-demo" /><figcaption aria-hidden="true">to-demo</figcaption>
+</figure>
+<h3 id="interpretation">Interpretation</h3>
+<p>Interpretation of numeric word forms:</p>
+<pre class="perl6"><code>use Lingua::NumericWordForms;
+say from-numeric-word-form(&#39;one thousand and twenty three&#39;);
+say from-numeric-word-form(&#39;хиляда двадесет и три&#39;, &#39;Bulgarian&#39;);
+say from-numeric-word-form(&#39;tysiąc dwadzieścia trzy&#39;, &#39;Polish&#39;);
+say from-numeric-word-form(&#39;одна тысяча двадцать три&#39;, &#39;Russian&#39;);
+say from-numeric-word-form(&#39;mil veintitrés&#39;, &#39;Spanish&#39;);</code></pre>
+<p>Here is a screenshot of the results:</p>
+<figure>
+<img src="https://github.com/antononcube/Raku-Lingua-NumericWordForms/raw/main/documents/diagrams/from-numeric-form-demo-Raku-REPL.png" alt="from-demo" /><figcaption aria-hidden="true">from-demo</figcaption>
+</figure>
+<p>The function <code>from-numeric-word-form</code> can also take a list or array of strings as a first argument. Here is an example:</p>
+<pre class="perl6"><code>say from-numeric-word-form([&#39;mil veintitrés&#39;, &#39;dos mil setenta y dos&#39;], &#39;Spanish&#39;);</code></pre>
+<p>For more examples see the file <a href="https://github.com/antononcube/Raku-Lingua-NumericWordForms/blob/main/examples/NumericWordForms-examples.raku">NumericWordForms-examples.raku</a>.</p>
+<h4 id="type-of-the-result">Type of the result</h4>
+<p>The returned result can be an <code>Int</code> object or a <code>Str</code> object – that is controlled with the adverb <code>number</code> (which by default is <code>True</code>.) Here is an example:</p>
+<pre class="perl6"><code>my $res = from-numeric-word-form(&#39;one thousand and twenty three&#39;); 
+say $res, &#39; &#39;, $res.WHAT;
+$res = from-numeric-word-form(&#39;one thousand and twenty three&#39;, :!number); 
+say $res, &#39; &#39;, $res.WHAT;</code></pre>
+<h4 id="automatic-language-detection">Automatic language detection</h4>
+<p>Automatic language detection is invoked if the second argument is ‘Automatic’ or not specified:</p>
+<pre class="perl6"><code>say from-numeric-word-form(&#39;tysiąc dwadzieścia trzy&#39;, &#39;Automatic&#39;):p;
+say from-numeric-word-form([&#39;tysiąc dwadzieścia trzy&#39;, &#39;twenty three&#39;]):p;</code></pre>
+<p>The adverb <code>:p</code> specifies whether the result should be a <code>Pair</code> object or a <code>List</code> of <code>Pair</code> objects with the detected languages as keys.</p>
+<h3 id="translation">Translation</h3>
+<p>Translation from one language to another:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode raku"><code class="sourceCode raku"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>‌‌say translate-numeric-word-form<span class="kw">(</span><span class="ch">&#39;</span><span class="st">хиляда двадесет и три</span><span class="ch">&#39;</span><span class="kw">,</span> <span class="ch">&#39;</span><span class="st">Bulgarian</span><span class="ch">&#39;</span> <span class="kw">=&gt;</span> <span class="ch">&#39;</span><span class="st">English</span><span class="ch">&#39;</span><span class="kw">)</span>;</span></code></pre></div>
+<p>(Currently that function translates to English only.)</p>
+<hr />
+<h2 id="roles">Roles</h2>
+<p>This package provides (exports) roles that can be used in grammars or roles in other packages, applications, etc.</p>
+<p>For example, see the roles:</p>
+<pre><code>Lingua::NumericWordForms::Roles::Bulgarian::WordedNumberSpec
+Lingua::NumericWordForms::Roles::English::WordedNumberSpec</code></pre>
+<p>A grammar or role that does the roles above should use the rule:</p>
+<pre><code>&lt;numeric-word-form&gt;</code></pre>
+<p>For code examples see the file <a href="https://github.com/antononcube/Raku-Lingua-NumericWordForms/blob/main/examples/Parsing-examples.raku">Parsing-examples.raku</a>.</p>
+<p><strong>Remark:</strong> The role <code>Lingua::NumericWordForms::Roles::WordedNumberSpec</code> and the corresponding actions class <code>Lingua::NumericWordForms::Actions::WordedNumberSpec</code> are “abstract”. They were introduced in order to have simpler roles and actions code (and non-duplicated implementations.) Hence, that role and class <em>should not</em> be used in grammars and roles outside of this package.</p>
+<hr />
+<h2 id="todo">TODO</h2>
+<p>The following TODO items are ordered by priority, the most important are on top.</p>
+<ol type="1">
+<li><p><input type="checkbox" disabled="" />
+Expand parsing beyond trillions</p></li>
+<li><p><input type="checkbox" disabled="" />
+Word form generation languages other than Enlish.</p></li>
+<li><p><input type="checkbox" disabled="" />
+Implement parsing of ordinal numeric word forms</p></li>
+<li><p><input type="checkbox" disabled="" />
+Implement parsing of year “shortcut” word forms, like “twenty o three”</p></li>
+<li><p><input type="checkbox" disabled="" />
+Implement parsing of numeric word forms for rationals, like “five twelfths”</p></li>
+</ol>
+<hr />
+<h2 id="references">References</h2>
+<p>[AAr1] Anton Antonov, <a href="https://github.com/antononcube/Raku-DSL-Shared">Raku::DSL::Shared</a>.</p>
+<p>[BL1] Brent “Labster” Laabs, <a href="https://github.com/labster/p6-Lingua-Number"><code>Lingua::Number</code></a>.</p>
+<p>[SS1] Larry Wall, Steve Schulze, <a href="https://github.com/thundergnat/Lingua-EN-Numbers">Lingua::EN::Numbers</a>.</p>
