@@ -7,8 +7,6 @@ The repository
 provides a Raku package with functions for the 
 generation, parsing, and interpretation of numeric word forms in different languages.
 
-The initial versions of the code in this repository can be found in the GitHub repository \[AAr1\].
-
 The Raku package 
 [`Lingua::Number`](https://github.com/labster/p6-Lingua-Number), [BL1],
 provides word forms (cardinal, ordinal, etc.) generation in many languages. 
