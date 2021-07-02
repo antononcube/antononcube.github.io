@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This document provides description for with Raku package 
+This document provides description of the Raku package 
 [Chemistry::Stoichiometry](https://github.com/antononcube/Raku-Chemistry-Stoichiometry)
 that provides functions for Stoichiometry procedures and related data.
 
