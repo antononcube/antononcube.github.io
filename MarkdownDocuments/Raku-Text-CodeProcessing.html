@@ -1,0 +1,76 @@
+<h1 id="raku-textcodeprocessing">Raku Text::CodeProcessing</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes a Raku package that facilitates <a href="https://en.wikipedia.org/wiki/Literate_programming">Literate Programming</a>. (Actually, only semi-literate at this point.)</p>
+<p>The package has functions and a script for the evaluations of code chunks in documents of different types (like <a href="https://daringfireball.net/projects/markdown/">Markdown</a>, <a href="https://orgmode.org">Org Mode</a>, <a href="https://docs.raku.org/language/pod">Pod6</a>.)</p>
+<hr />
+<h2 id="installation">Installation</h2>
+<p>Package installations from both sources use <a href="https://github.com/ugexe/zef">zef installer</a> (which should be bundled with the “standard” <a href="https://rakudo.org">Rakudo</a> installation file.)</p>
+<p>To install the package from <a href="https://modules.raku.org">Raku Modules / PAUSE</a> use the shell command:</p>
+<pre><code>zef install Text::CodeProcessing</code></pre>
+<p>To install the package from the GitHub repository use the shell command:</p>
+<pre><code>zef install https://github.com/antononcube/Raku-Text-CodeProcessing.git</code></pre>
+<hr />
+<h2 id="usage">Usage</h2>
+<h3 id="main-function">Main function</h3>
+<p>The package provides the function <code>FileCodeChunksEvaluation</code> for the evaluation of code chunks in files. The first argument is a file name string:</p>
+<pre class="perl6"><code>FileCodeChunksEvaluation( $fileName, ... )</code></pre>
+<p>Here are the (optional) parameters:</p>
+<ul>
+<li><p><code>Str :$outputFileName</code> : output file name</p></li>
+<li><p><code>Str :$evalOutputPrompt = 'AUTO'</code> : code chunk output prompt</p></li>
+<li><p><code>Str :$evalErrorPrompt = 'AUTO'</code> : code chunk error prompt</p></li>
+<li><p><code>Bool :$noteOutputFileName = False</code> : whether to print out the name of the new file</p></li>
+<li><p><code>Bool :$promptPerLine = True</code> : whether to put prompt to each output or error line or just the first one</p></li>
+</ul>
+<p>When the prompt arguments are given the value <code>'AUTO'</code> then the actual prompt values are selected according to the file type:</p>
+<ul>
+<li><p>Markdown : <code>evalOutputPrompt = '# '</code>, <code>evalErrorPrompt = '#ERROR: '</code></p></li>
+<li><p>Org-mode : <code>evalOutputPrompt = ': '</code>, <code>evalErrorPrompt = ':ERROR: '</code></p></li>
+<li><p>Pod6 : <code>evalOutputPrompt = '# '</code>, <code>evalErrorPrompt = '#ERROR: '</code></p></li>
+</ul>
+<h3 id="scripts">Scripts</h3>
+<p>The <a href="./examples">directory “./examples”</a> has a script files, <a href="./examples/file-code-chunks-eval.raku"><code>file-code-chunks-eval.raku</code></a> and <a href="./examples/file-code-chunks-extract.raku"><code>file-code-chunks-extract.raku</code></a>, that can be used from the command line.</p>
+<p>Here are script invocation examples for the code chunks evaluation in a file named “doc.md”:</p>
+<pre class="shell"><code>file-code-chunks-eval.raku doc.md</code></pre>
+<pre class="shell"><code>file-code-chunks-eval.raku file-code-chunks-eval.raku --evalOutputPrompt=&quot;## OUTPUT :: &quot; --evalErrorPrompt=&quot;## ERROR :: &quot; -o=doc_newly_weaved.md doc.md</code></pre>
+<p>Here is a script invocation example for code extraction from code chunks in a file named “doc.md”:</p>
+<pre class="shell"><code>file-code-chunks-extract.raku -o=doc_new_extract.md doc.md</code></pre>
+<p>If no output file name is specified then the script <a href="./examples/file-code-chunks-eval.raku"><code>file-code-chunks-eval.raku</code></a> (<a href="./examples/file-code-chunks-extract.raku"><code>file-code-chunks-extract.raku</code></a>) makes a new file in the same directory with the string "_woven" ("_tangled") inserted into the input file name.</p>
+<hr />
+<h2 id="implementation-notes">Implementation notes</h2>
+<p>The implementation uses a greatly reduced version of the class <a href="https://github.com/bduggan/p6-jupyter-kernel/blob/master/lib/Jupyter/Kernel/Sandbox.rakumod"><code>Jupyter::Kernel::Sandbox</code></a> of Raku Jupyter kernel package/repository [BD1]. (See the class <a href="./lib/Text/CodeProcessing/REPLSandbox.rakumod">REPLSandbox</a>.)</p>
+<p>Just using <a href="https://docs.raku.org/routine/EVAL"><code>EVAL</code></a>, (as in [SO1]) did not provide state persistence between code chunks evaluations. For example, creating and assigning variables or loading packages in the first code chunk did not make those variables and packages “available” in the subsequent code chunks.</p>
+<p>That problem is resolved by setting up a separate Raku REPL (sandbox) object.</p>
+<hr />
+<h2 id="todo">TODO</h2>
+<p>The following TODO items are ordered by priority, the most important are on top.</p>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="" checked="" />
+Provide a function that works on strings. (By refactoring the main function <code>FileCodeChunksEvaluation</code>.)</p></li>
+<li><p><input type="checkbox" disabled="" />
+Add unit tests for:</p><ul class="task-list">
+<li><p><input type="checkbox" disabled="" checked="" />
+Code chunks evaluation</p></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+Persistence of REPL state(s)</p></li>
+<li><p><input type="checkbox" disabled="" />
+REPL availability</p></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+File code chunks evaluation</p></li>
+</ul></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+Implement handling of code chunk parameters.</p></li>
+<li><p><input type="checkbox" disabled="" />
+Implement data arguments for code chunks. (As in <a href="https://orgmode.org/manual/Environment-of-a-Code-Block.html">Babel org-mode</a>.)</p></li>
+<li><p><input type="checkbox" disabled="" />
+Implement evaluation of Raku code chunks in Mathematica notebooks.</p></li>
+<li><p><input type="checkbox" disabled="" />
+Make the functionalities to work with languages other than Raku.</p><ul>
+<li>This is both difficult and low priority.</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="references">References</h2>
+<p>[BD1] Brian Duggan et al., <a href="https://github.com/bduggan/p6-jupyter-kernel">p6-jupyter-kernel</a>, (2017-2020), <a href="https://github.com/bduggan">GitHug/bduggan</a>.</p>
+<p>[DS1] Daniel Sockwell, <a href="https://www.codesections.com/blog/weaving-raku/">“Weaving Raku: semiliterate programming in a beautiful language”</a>, (2020), <a href="https://www.codesections.com">codesections.com</a>.</p>
+<p>[SO1] Suman Khanal et al., <a href="https://stackoverflow.com/q/57127263">“Capture and execute multiline code and incorporate result in raku”</a>, (2017), <a href="https://stackoverflow.com">Stack Overflow</a>.</p>
