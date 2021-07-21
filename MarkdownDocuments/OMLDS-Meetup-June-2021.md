@@ -4,7 +4,11 @@
 Tutorial and software architecture presentation   
 
 [This presentation](https://www.meetup.com/Orlando-MLDS/events/278910791), [AA1],
-was a combination previous presentation, [AAv2], on data wrangling and new material on data acquisition.
+was a combination of 
+
+1. A previous data wrangling presentation, [AAr1, AAv2]
+2. New material on data acquisition, [AAr2, AAr3]
+
 Compared to other presentations this one was much more software-architecture content.
 
 Here is the mind-map used for the presentation:
@@ -37,7 +41,7 @@ A few notes:
    - And related packages in those programming languages.
   
 - I implemented the discussed utilization of [ZeroMQ](https://zeromq.org) 
-  a few weeks after the presentation, see [AA2, AAr3].
+  a few weeks after the presentation, see [AA2, AAr4].
 
 ------
 
@@ -57,17 +61,22 @@ A few notes:
 
 ### Repositories
 
-[AAr1] AntonAntonov,
-[DSL::English::DataAcquisitionWorkflows Raku package](https://github.com/antononcube/Raku-DSL-English-DataQueryWorkflows), 
-(2021), 
-[GitHub/antononcube](https://github.com/antononcube).
-
-[AAr2] AntonAntonov,
+[AAr1] Anton Antonov,
 [DSL::English::DataQueryWorkflows Raku package](https://github.com/antononcube/Raku-DSL-English-DataQueryWorkflows), 
 (2020), 
 [GitHub/antononcube](https://github.com/antononcube).
 
+[AAr2] Anton Antonov,
+[DSL::English::DataAcquisitionWorkflows Raku package](https://github.com/antononcube/Raku-DSL-English-DataAcquisitionWorkflows), 
+(2021), 
+[GitHub/antononcube](https://github.com/antononcube).
+
 [AAr3] Anton Antonov,
+["Data Acquirer"](https://github.com/antononcube/ConversationalAgents/tree/master/Projects/DataAcquirer), 
+(2021), 
+[ConversationalAgents at GitHub/antononcube](https://github.com/antononcube/ConversationalAgents).
+
+[AAr4] Anton Antonov,
 [Text::CodeProcessing Raku package](https://github.com/antononcube/Raku-Text-CodeProcessing), 
 (2021), 
 [GitHub/antononcube](https://github.com/antononcube).
