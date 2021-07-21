@@ -4,12 +4,12 @@
 Tutorial and software architecture presentation   
 
 [This presentation](https://www.meetup.com/Orlando-MLDS/events/278910791), [AA1],
-was a combination previous presentation, [AAv1], on data wrangling and new material on data acquisition.
+was a combination previous presentation, [AAv2], on data wrangling and new material on data acquisition.
 Compared to other presentations this one was much more software-architecture content.
 
 Here is the mind-map used for the presentation:
 
-[![](./Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.png)](./Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.pdf)
+[![OMLDS-Meetup-June-2021-mind-map](./Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.png)](./Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.pdf)
 
 Here is the abstract:
 
@@ -22,11 +22,22 @@ Here is the abstract:
 > The talk comes with a number of references, including Anton's own repositories and 
 > other talks he gave on the subject.
 
-Here is a recording of the presentation at YouTube, [AAv2]:
+Here is a recording of the presentation at YouTube, [AAv1]:
 
 - ["Multi-language Data Wrangling and Acquisition Conversational Agents"](https://youtu.be/8B4_mkU_XW0).
 
 That video recording is long, over 2 hours. (The timings in the mind-map were very loosely followed...)
+
+A few notes:
+
+- I developed the presented Domain Specific Language (DSL) functionalities were developed with Raku.
+  
+- The Raku packages generate code for Julia, Python, R, Wolfram Language (WL).
+ 
+   - And related packages in those programming languages.
+  
+- I implemented the discussed utilization of [ZeroMQ](https://zeromq.org) 
+  a few weeks after the presentation, see [AAr3].
 
 ------
 
@@ -39,14 +50,41 @@ That video recording is long, over 2 hours. (The timings in the mind-map were ve
 (2021),
 [Orland Machine Learning and Data Science Meetup](https://www.meetup.com/Orlando-MLDS/events/278910791).
 
+### Repositories
+
+[AAr1] AntonAntonov,
+[DSL::English::DataAcquisitionWorkflows Raku package](https://github.com/antononcube/Raku-DSL-English-DataQueryWorkflows), 
+(2021), 
+[GitHub/antononcube](https://github.com/antononcube).
+
+[AAr2] AntonAntonov,
+[DSL::English::DataQueryWorkflows Raku package](https://github.com/antononcube/Raku-DSL-English-DataQueryWorkflows), 
+(2020), 
+[GitHub/antononcube](https://github.com/antononcube).
+
+[AAr3] Anton Antonov,
+[Text::CodeProcessing Raku package](https://github.com/antononcube/Raku-Text-CodeProcessing), 
+(2021), 
+[GitHub/antononcube](https://github.com/antononcube).
+
 ### Video recordings
 
 [AAv1] Anton Antonov,
+["Multi-language Data Wrangling and Acquisition Conversational Agents"](https://www.youtube.com/watch?v=8B4_mkU_XW0),
+(2021),
+[OMLDS YouTube channel](https://www.youtube.com/channel/UCoTuN2KVQHpnAOO9nM9354Q).
+
+[AAv2] Anton Antonov,
 ["Multi-language Data-Wrangling Conversational Agent"](https://www.youtube.com/watch?v=pQk5jwoMSxs),
 (2020),
 [Wolfram Technology Conference, 2020](https://www.wolfram.com/events/technology-conference/2020/).
 
-[AAv2] Anton Antonov,
-["Multi-language Data Wrangling and Acquisition Conversational Agents"](https://www.youtube.com/watch?v=8B4_mkU_XW0),
-(2021),
-[OMLDS YouTube channel](https://www.youtube.com/channel/UCoTuN2KVQHpnAOO9nM9354Q).
+[AAv3] Anton Antonov,
+["Multi language Data Wrangling Translation - talk advertisement"](https://www.youtube.com/watch?v=OHY64ezgnm4), 
+(2020), 
+[Anton Antonov YouTube channel](https://www.youtube.com/channel/UC5qMPIsJeztfARXWdIw3Xzw).
+
+[AAv4] Anton Antonov,
+["How to simplify ML workflows specifications"](https://www.youtube.com/watch?v=b9Uu7gRF5KY), 
+(2020), 
+[R Consortium YouTube channel](https://www.youtube.com/channel/UC_R5smHVXRYGhZYDJsnXTwg).
