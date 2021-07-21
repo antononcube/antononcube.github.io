@@ -9,7 +9,7 @@ Compared to other presentations this one was much more software-architecture con
 
 Here is the mind-map used for the presentation:
 
-[![OMLDS-Meetup-June-2021-mind-map](./Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.png)](./Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.pdf)
+[![OMLDS-Meetup-June-2021-mind-map](https://github.com/antononcube/antononcube.github.io/raw/master/MarkdownDocuments/Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.png)](https://github.com/antononcube/antononcube.github.io/raw/master/MarkdownDocuments/Diagrams/OMLDS-Meetup-June-2021/OMLDS-June-2021-mind-map.pdf)
 
 Here is the abstract:
 
@@ -37,7 +37,7 @@ A few notes:
    - And related packages in those programming languages.
   
 - I implemented the discussed utilization of [ZeroMQ](https://zeromq.org) 
-  a few weeks after the presentation, see [AAr3].
+  a few weeks after the presentation, see [AA2, AAr3].
 
 ------
 
@@ -46,9 +46,14 @@ A few notes:
 ### Articles, announcements
 
 [AA1] Anton Antonov,
-["Multi-language Data Wrangling and Acquisition Conversational Agents"](),
+["Multi-language Data Wrangling and Acquisition Conversational Agents"](https://www.meetup.com/Orlando-MLDS/events/278910791),
 (2021),
-[Orland Machine Learning and Data Science Meetup](https://www.meetup.com/Orlando-MLDS/events/278910791).
+[Orland Machine Learning and Data Science Meetup](https://www.meetup.com/Orlando-MLDS).
+
+[AA2] Anton Antonov,
+["Raku Text::CodeProcessing](https://rakuforprediction.wordpress.com/2021/07/13/raku-textcodeprocessing/),
+(2021),
+[RakuForPrediction at WordPress](https://rakuforprediction.wordpress.com).
 
 ### Repositories
 
